@@ -5,6 +5,12 @@ quarto-required: ">=1.4.0"
 contributes:
   filters:
     - live.lua
+    - docusaurus.lua
+    - docusaurus_code_blocks.lua
+    - docusaurus_citeproc.lua
+    - docusaurus_renderers.lua
+    - docusaurus_utils.lua
+    - docusaurus_writer.lua
   formats:
     common:
       ojs-engine: true
@@ -15,3 +21,24 @@ contributes:
     dashboard: default
     gfm:
       variant: +yaml_metadata_block
+    md:
+      # Although we use a custom writer, we still need the variants here the lua filters to render correctly.
+      # Ideally, we would forward the variants to the custom writer.
+      variant: gfm+pipe_tables+tex_math_dollars+header_attributes+raw_html+all_symbols_escapable+backtick_code_blocks+fenced_code_blocks+space_in_atx_header+intraword_underscores+lists_without_preceding_blankline+shortcut_reference_links
+      output-ext: mdx
+      # quarto-custom-format: docusaurus
+      inline-includes: true
+      preserve-yaml: true
+      wrap: none
+      fig-format: retina
+      fig-width: 8
+      fig-height: 5
+      html-math-method: webtex
+      filters:
+        - at: layout-cites
+          path: docusaurus_code_blocks.lua # we need to run this before the code blocks are rendered
+        - at: post-render
+          path: docusaurus.lua
+        - at: post-finalize
+          path: docusaurus_citeproc.lua
+
