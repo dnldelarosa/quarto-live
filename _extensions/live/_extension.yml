@@ -18,7 +18,10 @@ contributes:
         - live.lua
         - replace-code-types.lua
     html: default
-    revealjs: default
+    revealjs:
+      theme: [default, imtheme.scss]
+      slide-number: true
+      date-format: long
     dashboard: default
     gfm:
       variant: +yaml_metadata_block
