@@ -13,3 +13,5 @@ contributes:
     html: default
     revealjs: default
     dashboard: default
+    gfm:
+      variant: +yaml_metadata_block
