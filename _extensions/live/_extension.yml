@@ -16,6 +16,7 @@ contributes:
       ojs-engine: true
       filters:
         - live.lua
+        - replace-code-types.lua
     html: default
     revealjs: default
     dashboard: default
